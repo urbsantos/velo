@@ -13,12 +13,13 @@ test('deve consultar um pedido aprovado', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Número do Pedido' }).fill('VLO-M4KHHV')
   await page.getByRole('button', { name: 'Buscar Pedido' }).click()
 
-  //Assert
-  //await expect(page.getByTestId('order-result-id')).toBeVisible({timeout: 10_000})
-  //await expect(page.getByTestId('order-result-id')).toContainText('VLO-M4KHHV')
-  await expect(page.getByText('VLO-M4KHHV')).toBeVisible({timeout: 10_000})
+  //Assert 
 
-  //await expect(page.getByTestId('order-result-status')).toBeVisible({timeout: 10_000})
-  //await expect(page.getByTestId('order-result-status')).toContainText('APROVADO')
-  await expect(page.getByText('APROVADO')).toBeVisible()
+  const containerPedido = page.getByRole('paragraph')
+    .filter({ hasText: /^Pedido$/ })
+    .locator('..') //pega o elemento pai do elemento que contém o texto 'Pedido'
+
+  await expect(containerPedido).toContainText('VLO-M4KHHV', { timeout: 10_000 }) //verifica se o elemento contém o texto 'VLO-M4KHHV'
+
+  await expect(page.getByText('APROVADO')).toBeVisible() //verifica se o elemento contém o texto 'APROVADO'
 })
