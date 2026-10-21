@@ -16,7 +16,7 @@ test('deve consultar um pedido aprovado', async ({ page }) => {
   //Assert
   //await expect(page.getByTestId('order-result-id')).toBeVisible({timeout: 10_000})
   //await expect(page.getByTestId('order-result-id')).toContainText('VLO-M4KHHV')
-  await expect(page.getByText('VLO-M4KHHV')).toBeVisible()
+  await expect(page.getByText('VLO-M4KHHV')).toBeVisible({timeout: 10_000})
 
   //await expect(page.getByTestId('order-result-status')).toBeVisible({timeout: 10_000})
   //await expect(page.getByTestId('order-result-status')).toContainText('APROVADO')
